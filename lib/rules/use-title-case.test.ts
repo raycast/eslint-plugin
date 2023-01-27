@@ -77,5 +77,35 @@ ruleTester.run("use-title-case", rule, {
         <Action title={"Send My Message to Someone"} />
       `,
     },
+    {
+      code: `
+        <Action title={isAssignedToMe ? "Assign to me" : "Unassign From Me"} />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from me"} />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={isAssignedToMe ? "Assign to me" : "Unassign from me"} />
+      `,
+      errors: [
+        { messageId: "isNotTitleCased" },
+        { messageId: "isNotTitleCased" },
+      ],
+      output: `
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+      `,
+    },
   ],
 });
