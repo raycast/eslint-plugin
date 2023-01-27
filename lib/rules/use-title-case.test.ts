@@ -22,6 +22,11 @@ ruleTester.run("use-title-case", rule, {
     },
     {
       code: `
+        <Action.CopyToClipboard title="Copy Action" />
+      `,
+    },
+    {
+      code: `
         <Foobar title="Submit form" />
       `,
     },
@@ -43,6 +48,15 @@ ruleTester.run("use-title-case", rule, {
       errors: [{ messageId: "isNotTitleCased" }],
       output: `
         <ActionPanel.Submenu title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <Action.CopyToClipboard title="Submit form" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action.CopyToClipboard title="Submit Form" />
       `,
     },
     {

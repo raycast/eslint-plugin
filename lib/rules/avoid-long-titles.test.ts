@@ -25,6 +25,11 @@ ruleTester.run("avoid-long-titles", rule, {
     },
     {
       code: `
+        <Action.CopyToClipboard title="${shortTitle}" />
+      `,
+    },
+    {
+      code: `
         <Foobar title="${longActionTitle}" />
       `,
     },
@@ -39,6 +44,12 @@ ruleTester.run("avoid-long-titles", rule, {
     {
       code: `
         <ActionPanel.Submenu title="${longActionTitle}" />
+      `,
+      errors: [{ messageId: "titleTooLong" }],
+    },
+    {
+      code: `
+        <Action.CopyToClipboard title="${longActionTitle}" />
       `,
       errors: [{ messageId: "titleTooLong" }],
     },
