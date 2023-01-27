@@ -7,7 +7,7 @@ export = {
       plugins: ["raycast"],
       rules: {
         "raycast/avoid-long-titles": "warn",
-        "raycast/use-title-case": "error",
+        "raycast/use-title-case": "warn",
       },
     },
   },

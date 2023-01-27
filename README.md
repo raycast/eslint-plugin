@@ -53,15 +53,14 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 
 <!-- begin auto-generated rules list -->
 
-💼 Configurations enabled in.\
 ⚠️ Configurations set to warn in.\
 ✅ Set in the `recommended` configuration.\
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                 | Description       | 💼 | ⚠️ | 🔧 |
-| :--------------------------------------------------- | :---------------- | :- | :- | :- |
-| [avoid-long-titles](docs/rules/avoid-long-titles.md) | Avoid long titles |    | ✅  |    |
-| [use-title-case](docs/rules/use-title-case.md)       | Avoid long titles | ✅  |    | 🔧 |
+| Name                                                 | Description       | ⚠️ | 🔧 |
+| :--------------------------------------------------- | :---------------- | :- | :- |
+| [avoid-long-titles](docs/rules/avoid-long-titles.md) | Avoid long titles | ✅  |    |
+| [use-title-case](docs/rules/use-title-case.md)       | Avoid long titles | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
 

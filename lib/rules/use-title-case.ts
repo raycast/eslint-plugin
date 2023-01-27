@@ -78,7 +78,7 @@ export default createRule({
     },
     type: "suggestion",
     docs: {
-      recommended: "error",
+      recommended: "warn",
       description: "Avoid long titles",
     },
     schema: [],

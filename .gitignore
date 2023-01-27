@@ -1,4 +1,7 @@
 # dependencies
 node_modules
+# build folder
+dist
 # misc
 .DS_Store
+*.tgz
