@@ -68,5 +68,14 @@ ruleTester.run("use-title-case", rule, {
         <Action title="Send My Message to Someone" />
       `,
     },
+    {
+      code: `
+        <Action title={"Send my message to someone"} />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title={"Send My Message to Someone"} />
+      `,
+    },
   ],
 });

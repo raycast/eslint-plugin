@@ -23,22 +23,44 @@ export default createRule({
             const value =
               titleAttribute.type === "JSXAttribute" && titleAttribute.value;
 
-            if (
-              value &&
-              value.type === AST_NODE_TYPES.Literal &&
-              typeof value.value === "string"
-            ) {
-              const originalTitle = value.value;
+            if (value) {
+              if (
+                value.type === AST_NODE_TYPES.Literal &&
+                typeof value.value === "string"
+              ) {
+                const originalTitle = value.value;
 
-              const formattedTitle = titleCase(originalTitle);
+                const formattedTitle = titleCase(originalTitle);
 
-              if (originalTitle !== formattedTitle) {
-                context.report({
-                  node: titleAttribute,
-                  messageId: "isNotTitleCased",
-                  fix: (fixer) =>
-                    fixer.replaceText(value, `"${formattedTitle}"`),
-                });
+                if (originalTitle !== formattedTitle) {
+                  context.report({
+                    node: titleAttribute,
+                    messageId: "isNotTitleCased",
+                    fix: (fixer) =>
+                      fixer.replaceText(value, `"${formattedTitle}"`),
+                  });
+                }
+              }
+
+              if (value.type === AST_NODE_TYPES.JSXExpressionContainer) {
+                const expression = value.expression;
+
+                if (
+                  expression.type === AST_NODE_TYPES.Literal &&
+                  expression.value &&
+                  typeof expression.value === "string"
+                ) {
+                  const formattedTitle = titleCase(expression.value);
+
+                  if (expression.value !== formattedTitle) {
+                    context.report({
+                      node: titleAttribute,
+                      messageId: "isNotTitleCased",
+                      fix: (fixer) =>
+                        fixer.replaceText(expression, `"${formattedTitle}"`),
+                    });
+                  }
+                }
               }
             }
           }
