@@ -29,13 +29,23 @@ Add `raycast` to the plugins section of your `.eslintrc` configuration file. You
 ```
 
 
-Then configure the rules you want to use under the rules section.
+Then configure the rules you want to use under the rules section:
 
 ```json
 {
     "rules": {
-        "raycast/rule-name": 2
+        "raycast/avoid-long-titles": "warn"
     }
+}
+```
+
+Note that a recommended configuration is exposed from the plugin to use the rules as recommended by Raycast:
+
+```json
+{
+    "extends": [
+        "plugin:raycast/recommended"
+    ]
 }
 ```
 
@@ -43,9 +53,15 @@ Then configure the rules you want to use under the rules section.
 
 <!-- begin auto-generated rules list -->
 
-| Name                                             |
-| :----------------------------------------------- |
-| [async-func-name](docs/rules/async-func-name.md) |
+💼 Configurations enabled in.\
+⚠️ Configurations set to warn in.\
+✅ Set in the `recommended` configuration.\
+🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
+
+| Name                                                 | Description       | 💼 | ⚠️ | 🔧 |
+| :--------------------------------------------------- | :---------------- | :- | :- | :- |
+| [avoid-long-titles](docs/rules/avoid-long-titles.md) | Avoid long titles |    | ✅  |    |
+| [use-title-case](docs/rules/use-title-case.md)       | Avoid long titles | ✅  |    | 🔧 |
 
 <!-- end auto-generated rules list -->
 
