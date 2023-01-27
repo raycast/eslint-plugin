@@ -1,0 +1,58 @@
+import { ESLintUtils } from "@typescript-eslint/utils";
+import rule from "./use-title-case";
+
+const ruleTester = new ESLintUtils.RuleTester({
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: { jsx: true },
+  },
+});
+
+ruleTester.run("use-title-case", rule, {
+  valid: [
+    {
+      code: `
+        <Action title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <ActionPanel.Submenu title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <Foobar title="Submit form" />
+      `,
+    },
+  ],
+  invalid: [
+    {
+      code: `
+        <Action title="Submit form" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <ActionPanel.Submenu title="Submit form" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <ActionPanel.Submenu title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <Action title="Send my message to someone" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Send My Message to Someone" />
+      `,
+    },
+  ],
+});

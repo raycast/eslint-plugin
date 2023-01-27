@@ -1,43 +1,17 @@
-import {
-  ESLintUtils,
-  TSESTree,
-  AST_NODE_TYPES,
-} from "@typescript-eslint/utils";
+import { ESLintUtils, AST_NODE_TYPES } from "@typescript-eslint/utils";
 import { titleCase } from "title-case";
+
+import { isActionComponent } from "../utils";
 
 const createRule = ESLintUtils.RuleCreator(
   (name) => `https://example.com/rule/${name}/test`
 );
 
-function isValidComponent(node: TSESTree.JSXTagNameExpression) {
-  if (node.type === AST_NODE_TYPES.JSXIdentifier) {
-    return node.name === "Action";
-  }
-
-  if (node.type === AST_NODE_TYPES.JSXMemberExpression) {
-    if (
-      node.object.type === AST_NODE_TYPES.JSXIdentifier &&
-      node.object.name === "Action"
-    ) {
-      return true;
-    }
-
-    return (
-      node.object.type === AST_NODE_TYPES.JSXIdentifier &&
-      node.object.name === "ActionPanel" &&
-      node.property.type === AST_NODE_TYPES.JSXIdentifier &&
-      node.property.name === "Submenu"
-    );
-  }
-
-  return false;
-}
-
 export default createRule({
   create: (context) => {
     return {
       JSXOpeningElement: (node) => {
-        if (isValidComponent(node.name)) {
+        if (isActionComponent(node.name)) {
           const titleAttribute = node.attributes.find((attribute) => {
             return (
               attribute.type === "JSXAttribute" &&
@@ -48,13 +22,16 @@ export default createRule({
           if (titleAttribute) {
             const value =
               titleAttribute.type === "JSXAttribute" && titleAttribute.value;
+
             if (
               value &&
               value.type === AST_NODE_TYPES.Literal &&
               typeof value.value === "string"
             ) {
               const originalTitle = value.value;
+
               const formattedTitle = titleCase(originalTitle);
+
               if (originalTitle !== formattedTitle) {
                 context.report({
                   node: titleAttribute,
@@ -74,7 +51,7 @@ export default createRule({
     fixable: "code",
     messages: {
       isNotTitleCased:
-        "Please follow the Title Case naming convention (e.g Copy to Clipboard).",
+        "Prefer Title Case naming convention for action titles (e.g Copy to Clipboard).",
     },
     type: "suggestion",
     docs: {
