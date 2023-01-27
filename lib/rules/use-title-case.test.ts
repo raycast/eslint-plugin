@@ -107,5 +107,13 @@ ruleTester.run("use-title-case", rule, {
         <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
       `,
     },
+    {
+      code: "<Action title={`Submit form`} />",
+      errors: [{ messageId: "isNotTitleCased" }],
+    },
+    {
+      code: "<Action title={`Submit form to ${service}`} />",
+      errors: [{ messageId: "isNotTitleCased" }],
+    },
   ],
 });

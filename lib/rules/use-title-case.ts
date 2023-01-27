@@ -107,6 +107,31 @@ export default createRule({
                     }
                   }
                 }
+
+                // If the expression is a template literal
+                // <Action title={`Submit form`} />
+                // or
+                // <Action title={`Submit ${formName} form`} />
+                if (expression.type === AST_NODE_TYPES.TemplateLiteral) {
+                  const quasis = expression.quasis;
+
+                  quasis.forEach((quasi) => {
+                    if (
+                      quasi.type === AST_NODE_TYPES.TemplateElement &&
+                      quasi.value &&
+                      typeof quasi.value.raw === "string"
+                    ) {
+                      const formattedTitle = titleCase(quasi.value.raw);
+
+                      if (quasi.value.raw !== formattedTitle) {
+                        return context.report({
+                          node: titleAttribute,
+                          messageId: "isNotTitleCased",
+                        });
+                      }
+                    }
+                  });
+                }
               }
             }
           }
