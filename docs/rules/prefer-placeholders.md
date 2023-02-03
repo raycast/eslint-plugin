@@ -1,4 +1,4 @@
-# Prefer Placeholders for Text Fields (`raycast/prefer-placeholders-text-fields`)
+# Prefer Placeholders (`@raycast/prefer-placeholders`)
 
 <!-- end auto-generated rule header -->
 

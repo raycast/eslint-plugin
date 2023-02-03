@@ -1,5 +1,5 @@
 import { ESLintUtils } from "@typescript-eslint/utils";
-import rule from "./prefer-placeholders-text-fields";
+import rule from "./prefer-placeholders";
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: "@typescript-eslint/parser",
@@ -8,7 +8,7 @@ const ruleTester = new ESLintUtils.RuleTester({
   },
 });
 
-ruleTester.run("prefer-placeholders-text-fields", rule, {
+ruleTester.run("prefer-placeholders", rule, {
   valid: [
     {
       code: `

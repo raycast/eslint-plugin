@@ -1,4 +1,4 @@
-# Prefer Title Case (`raycast/prefer-title-case`)
+# Prefer Title Case (`@raycast/prefer-title-case`)
 
 ⚠️ This rule _warns_ in the ✅ `recommended` config.
 

@@ -1,17 +1,17 @@
-import preferPlaceholdersTextFields from "./rules/prefer-placeholders-text-fields";
+import preferPlaceholders from "./rules/prefer-placeholders";
 import preferTitleCase from "./rules/prefer-title-case";
 
 export = {
   configs: {
     recommended: {
-      plugins: ["raycast"],
+      plugins: ["@raycast"],
       rules: {
-        "raycast/prefer-title-case": "warn",
+        "@raycast/prefer-title-case": "warn",
       },
     },
   },
   rules: {
     "prefer-title-case": preferTitleCase,
-    "prefer-placeholders-text-fields": preferPlaceholdersTextFields,
+    "prefer-placeholders": preferPlaceholders,
   },
 };

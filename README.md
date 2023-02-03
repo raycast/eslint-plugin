@@ -2,26 +2,26 @@
 
 This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
 
-> This ESLint plugin (`eslint-plugin-raycast`) is not to be confused with the ESLint configuration we provide (`eslint-config-raycast`).
+> This ESLint plugin is not to be confused with the ESLint configuration we provide.
 >
-> `eslint-plugin-raycast` exposes the rules for Raycast extensions while `eslint-config-raycast` abstracts Raycast's extensions configuration so you can set it up in a simple way.
+> `@raycast/eslint-plugin` exposes the rules for Raycast extensions while `@raycast/eslint-config` abstracts Raycast's extensions configuration so you can set it up in a simple way.
 
 ## Installation
 
-Install `eslint-plugin-raycast` as part of your dev dependencies:
+Install `@raycast/eslint-plugin` as part of your dev dependencies:
 
 ```sh
-npm install eslint-plugin-raycast --save-dev
+npm install @raycast/eslint-plugin --save-dev
 ```
 
 ## Usage
 
-Add `raycast` to the `plugins` section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `@raycast` to the `plugins` section of your `.eslintrc` configuration file.
 
 ```json
 {
     "plugins": [
-        "raycast"
+        "@raycast"
     ]
 }
 ```
@@ -31,7 +31,7 @@ Then configure the rules you want to use under the rules section:
 ```json
 {
     "rules": {
-        "raycast/prefer-title-case": "warn"
+        "@raycast/prefer-title-case": "warn"
     }
 }
 ```
@@ -41,7 +41,7 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 ```json
 {
     "extends": [
-        "plugin:raycast/recommended"
+        "plugin:@raycast/recommended"
     ]
 }
 ```
@@ -54,10 +54,10 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 ✅ Set in the `recommended` configuration.\
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                                             | Description                         | ⚠️ | 🔧 |
-| :------------------------------------------------------------------------------- | :---------------------------------- | :- | :- |
-| [prefer-placeholders-text-fields](docs/rules/prefer-placeholders-text-fields.md) | Prefer Placeholders for Text Fields |    |    |
-| [prefer-title-case](docs/rules/prefer-title-case.md)                             | Prefer Title Case                   | ✅  | 🔧 |
+| Name                                                     | Description                         | ⚠️ | 🔧 |
+| :------------------------------------------------------- | :---------------------------------- | :- | :- |
+| [prefer-placeholders](docs/rules/prefer-placeholders.md) | Prefer Placeholders for Text Fields |    |    |
+| [prefer-title-case](docs/rules/prefer-title-case.md)     | Prefer Title Case                   | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
 
