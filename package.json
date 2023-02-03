@@ -1,7 +1,8 @@
 {
   "name": "eslint-plugin-raycast",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ESLint plugin designed specifically for Raycast extensions",
+  "author": "Raycast Technologies Ltd.",
   "keywords": [
     "raycast",
     "eslint",
@@ -11,13 +12,13 @@
   "main": "./dist/index.js",
   "files": [
     "dist",
-    "README.md",
-    "package.json"
+    "README.md"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
     "test": "jest",
+    "preupdate:docs": "npm run build",
     "update:docs": "eslint-doc-generator",
     "lint": "npm-run-all \"lint:*\"",
     "lint:eslint-docs": "npm-run-all \"update:docs -- --check\"",
