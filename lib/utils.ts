@@ -23,3 +23,13 @@ export function isActionComponent(node: TSESTree.JSXTagNameExpression) {
 
   return false;
 }
+
+export function isTextField(node: TSESTree.JSXTagNameExpression) {
+  return (
+    node.type === AST_NODE_TYPES.JSXMemberExpression &&
+    node.object.type === AST_NODE_TYPES.JSXIdentifier &&
+    node.object.name === "Form" &&
+    node.property.type === AST_NODE_TYPES.JSXIdentifier &&
+    (node.property.name === "TextField" || node.property.name === "TextArea")
+  );
+}

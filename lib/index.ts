@@ -1,3 +1,4 @@
+import preferPlaceholdersTextFields from "./rules/prefer-placeholders-text-fields";
 import preferTitleCase from "./rules/prefer-title-case";
 
 export = {
@@ -11,5 +12,6 @@ export = {
   },
   rules: {
     "prefer-title-case": preferTitleCase,
+    "prefer-placeholders-text-fields": preferPlaceholdersTextFields,
   },
 };

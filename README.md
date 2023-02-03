@@ -57,9 +57,10 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 ✅ Set in the `recommended` configuration.\
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                 | Description       | ⚠️ | 🔧 |
-| :--------------------------------------------------- | :---------------- | :- | :- |
-| [prefer-title-case](docs/rules/prefer-title-case.md) | Prefer Title Case | ✅  | 🔧 |
+| Name                                                                             | Description                         | ⚠️ | 🔧 |
+| :------------------------------------------------------------------------------- | :---------------------------------- | :- | :- |
+| [prefer-placeholders-text-fields](docs/rules/prefer-placeholders-text-fields.md) | Prefer Placeholders for Text Fields |    |    |
+| [prefer-title-case](docs/rules/prefer-title-case.md)                             | Prefer Title Case                   | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
 
