@@ -1,7 +1,7 @@
 {
   "name": "@raycast/eslint-plugin",
   "version": "0.1.0",
-  "description": "ESLint plugin designed specifically for Raycast extensions",
+  "description": "ESLint plugin designed to help Raycast's extensions authors follow best practices",
   "author": "Raycast Technologies Ltd.",
   "keywords": [
     "raycast",

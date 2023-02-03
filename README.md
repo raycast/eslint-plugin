@@ -1,8 +1,8 @@
-# eslint-plugin-raycast
+# Raycast ESLint Plugin
 
 This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
 
-> This ESLint plugin is not to be confused with the ESLint configuration we provide.
+> This plugin is not to be confused with the ESLint configuration we provide.
 >
 > `@raycast/eslint-plugin` exposes the rules for Raycast extensions while `@raycast/eslint-config` abstracts Raycast's extensions configuration so you can set it up in a simple way.
 
@@ -31,7 +31,7 @@ Then configure the rules you want to use under the rules section:
 ```json
 {
     "rules": {
-        "@raycast/prefer-title-case": "warn"
+        "@raycast/prefer-placeholders": "warn"
     }
 }
 ```
