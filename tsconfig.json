@@ -14,5 +14,5 @@
     "sourceMap": false,
     "suppressImplicitAnyIndexErrors": true
   },
-  "include": ["./lib/**/*.ts", "lib/rules/avoid-long-titles.js", "lib/index.ts"]
+  "include": ["./lib/**/*.ts"]
 }

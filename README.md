@@ -1,6 +1,6 @@
 # eslint-plugin-raycast
 
-ESLint plugin designed specifically for Raycast extensions
+This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
 
 ## Installation
 
@@ -34,7 +34,7 @@ Then configure the rules you want to use under the rules section:
 ```json
 {
     "rules": {
-        "raycast/avoid-long-titles": "warn"
+        "raycast/prefer-title-case": "warn"
     }
 }
 ```
@@ -59,7 +59,6 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 
 | Name                                                 | Description       | ⚠️ | 🔧 |
 | :--------------------------------------------------- | :---------------- | :- | :- |
-| [avoid-long-titles](docs/rules/avoid-long-titles.md) | Avoid long titles | ✅  |    |
 | [prefer-title-case](docs/rules/prefer-title-case.md) | Prefer Title Case | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
