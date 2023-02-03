@@ -1,4 +1,4 @@
-# Avoid long titles (`raycast/use-title-case`)
+# Avoid long titles (`raycast/prefer-title-case`)
 
 ⚠️ This rule _warns_ in the ✅ `recommended` config.
 

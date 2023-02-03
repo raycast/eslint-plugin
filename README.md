@@ -60,7 +60,7 @@ Note that a recommended configuration is exposed from the plugin to use the rule
 | Name                                                 | Description       | ⚠️ | 🔧 |
 | :--------------------------------------------------- | :---------------- | :- | :- |
 | [avoid-long-titles](docs/rules/avoid-long-titles.md) | Avoid long titles | ✅  |    |
-| [use-title-case](docs/rules/use-title-case.md)       | Avoid long titles | ✅  | 🔧 |
+| [prefer-title-case](docs/rules/prefer-title-case.md) | Avoid long titles | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
 

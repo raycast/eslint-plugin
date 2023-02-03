@@ -139,7 +139,7 @@ export default createRule({
       },
     };
   },
-  name: "use-title-case",
+  name: "prefer-title-case",
   meta: {
     fixable: "code",
     messages: {
@@ -149,7 +149,7 @@ export default createRule({
     type: "suggestion",
     docs: {
       recommended: "warn",
-      description: "Avoid long titles",
+      description: "Prefer Title Case",
     },
     schema: [],
   },

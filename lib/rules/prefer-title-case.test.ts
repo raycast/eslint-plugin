@@ -1,5 +1,5 @@
 import { ESLintUtils } from "@typescript-eslint/utils";
-import rule from "./use-title-case";
+import rule from "./prefer-title-case";
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: "@typescript-eslint/parser",
@@ -8,7 +8,7 @@ const ruleTester = new ESLintUtils.RuleTester({
   },
 });
 
-ruleTester.run("use-title-case", rule, {
+ruleTester.run("prefer-title-case", rule, {
   valid: [
     {
       code: `

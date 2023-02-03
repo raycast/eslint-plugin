@@ -1,5 +1,5 @@
 import avoidLongTitles from "./rules/avoid-long-titles";
-import useTitleCase from "./rules/use-title-case";
+import preferTitleCase from "./rules/prefer-title-case";
 
 export = {
   configs: {
@@ -7,12 +7,12 @@ export = {
       plugins: ["raycast"],
       rules: {
         "raycast/avoid-long-titles": "warn",
-        "raycast/use-title-case": "warn",
+        "raycast/prefer-title-case": "warn",
       },
     },
   },
   rules: {
     "avoid-long-titles": avoidLongTitles,
-    "use-title-case": useTitleCase,
+    "prefer-title-case": preferTitleCase,
   },
 };
