@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-raycast",
+  "name": "@raycast/eslint-plugin-raycast",
   "version": "0.1.0",
   "description": "ESLint plugin designed specifically for Raycast extensions",
   "author": "Raycast Technologies Ltd.",
@@ -9,6 +9,7 @@
     "eslintplugin",
     "eslint-plugin"
   ],
+  "license": "MIT",
   "main": "./dist/index.js",
   "files": [
     "dist",
@@ -41,6 +42,5 @@
   },
   "peerDependencies": {
     "eslint": ">=7"
-  },
-  "license": "ISC"
+  }
 }
