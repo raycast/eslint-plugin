@@ -115,5 +115,9 @@ ruleTester.run("prefer-title-case", rule, {
       code: "<Action title={`Submit form to ${service}`} />",
       errors: [{ messageId: "isNotTitleCased" }],
     },
+    {
+      code: "<Action title={`Submit form to ${service} and also to ${service2}`} />",
+      errors: [{ messageId: "isNotTitleCased" }],
+    },
   ],
 });

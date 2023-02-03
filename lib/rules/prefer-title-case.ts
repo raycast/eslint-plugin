@@ -36,7 +36,7 @@ export default createRule({
 
                 if (originalTitle !== formattedTitle) {
                   context.report({
-                    node: titleAttribute,
+                    node: value,
                     messageId: "isNotTitleCased",
                     fix: (fixer) =>
                       fixer.replaceText(value, `"${formattedTitle}"`),
@@ -59,7 +59,7 @@ export default createRule({
 
                   if (expression.value !== formattedTitle) {
                     context.report({
-                      node: titleAttribute,
+                      node: expression,
                       messageId: "isNotTitleCased",
                       fix: (fixer) =>
                         fixer.replaceText(expression, `"${formattedTitle}"`),
@@ -82,7 +82,7 @@ export default createRule({
 
                     if (consequent.value !== formattedTitle) {
                       context.report({
-                        node: titleAttribute,
+                        node: consequent,
                         messageId: "isNotTitleCased",
                         fix: (fixer) =>
                           fixer.replaceText(consequent, `"${formattedTitle}"`),
@@ -99,7 +99,7 @@ export default createRule({
 
                     if (alternate.value !== formattedTitle) {
                       context.report({
-                        node: titleAttribute,
+                        node: alternate,
                         messageId: "isNotTitleCased",
                         fix: (fixer) =>
                           fixer.replaceText(alternate, `"${formattedTitle}"`),
@@ -115,6 +115,8 @@ export default createRule({
                 if (expression.type === AST_NODE_TYPES.TemplateLiteral) {
                   const quasis = expression.quasis;
 
+                  let hasQuasiWithoutTitleCase = false;
+
                   quasis.forEach((quasi) => {
                     if (
                       quasi.type === AST_NODE_TYPES.TemplateElement &&
@@ -124,12 +126,14 @@ export default createRule({
                       const formattedTitle = titleCase(quasi.value.raw);
 
                       if (quasi.value.raw !== formattedTitle) {
-                        return context.report({
-                          node: titleAttribute,
-                          messageId: "isNotTitleCased",
-                        });
+                        hasQuasiWithoutTitleCase = true;
                       }
                     }
+                  });
+
+                  return context.report({
+                    node: expression,
+                    messageId: "isNotTitleCased",
                   });
                 }
               }
