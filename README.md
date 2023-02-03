@@ -2,15 +2,13 @@
 
 This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
 
+> This ESLint plugin (`eslint-plugin-raycast`) is not to be confused with the ESLint configuration we provide (`eslint-config-raycast`).
+>
+> `eslint-plugin-raycast` exposes the rules for Raycast extensions while `eslint-config-raycast` abstracts Raycast's extensions configuration so you can set it up in a simple way.
+
 ## Installation
 
-You'll first need to install [ESLint](https://eslint.org/):
-
-```sh
-npm i eslint --save-dev
-```
-
-Next, install `eslint-plugin-raycast`:
+Install `eslint-plugin-raycast` as part of your dev dependencies:
 
 ```sh
 npm install eslint-plugin-raycast --save-dev
@@ -18,7 +16,7 @@ npm install eslint-plugin-raycast --save-dev
 
 ## Usage
 
-Add `raycast` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `raycast` to the `plugins` section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
@@ -27,7 +25,6 @@ Add `raycast` to the plugins section of your `.eslintrc` configuration file. You
     ]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section:
 

@@ -39,9 +39,6 @@
     "rimraf": "^4.0.4",
     "ts-jest": "^29.0.5"
   },
-  "engines": {
-    "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"
-  },
   "peerDependencies": {
     "eslint": ">=7"
   },
