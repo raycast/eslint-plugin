@@ -1,5 +1,5 @@
 import { ESLintUtils } from "@typescript-eslint/utils";
-import rule from "./prefer-placeholders";
+import rule from "../lib/rules/prefer-placeholders";
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: "@typescript-eslint/parser",

@@ -20,9 +20,9 @@
     "build": "tsc",
     "test": "jest",
     "preupdate:docs": "npm run build",
-    "update:docs": "eslint-doc-generator",
+    "update:docs": "eslint-doc-generator --path-rule-list docs/rules/README.md",
     "lint": "npm-run-all \"lint:*\"",
-    "lint:eslint-docs": "npm-run-all \"update:docs -- --check\"",
+    "lint:eslint-docs": "npm-run-all \"update:docs --check\"",
     "lint:ts": "eslint ."
   },
   "dependencies": {

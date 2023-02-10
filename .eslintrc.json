@@ -8,10 +8,5 @@
   "env": {
     "node": true
   },
-  "overrides": [
-    {
-      "files": ["tests/**/*.js"],
-      "env": { "jest": true }
-    }
-  ]
+  "ignorePatterns": ["dist/"]
 }
