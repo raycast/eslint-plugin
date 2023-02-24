@@ -22,7 +22,7 @@ export default createRule({
       },
     };
   },
-  name: "prefer-title-case",
+  name: "prefer-placeholders",
   meta: {
     messages: {
       hasNoPlaceholder:
