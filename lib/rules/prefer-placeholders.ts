@@ -1,10 +1,4 @@
-import { ESLintUtils, AST_NODE_TYPES } from "@typescript-eslint/utils";
-
-import { isTextField } from "../utils";
-
-const createRule = ESLintUtils.RuleCreator(
-  (name) => `https://example.com/rule/${name}/test`
-);
+import { isTextField, createRule } from "../utils";
 
 export default createRule({
   create: (context) => {

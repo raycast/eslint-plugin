@@ -15,15 +15,15 @@ Examples of **incorrect** code for this rule:
 ```
 
 ```tsx
-<Form.TextArea title="Name" />
+<Form.TextArea title="Summary" />
 ```
 
 Examples of **correct** code for this rule:
 
 ```tsx
-<Form.TextField placeholder="John Doe" />
+<Form.TextField placeholder="John Doe" title="Name" />
 ```
 
 ```tsx
-<Form.TextArea placeholder="John Doe" />
+<Form.TextArea placeholder="Write a brief description here..." title="Summary" />
 ```

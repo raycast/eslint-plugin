@@ -1,4 +1,13 @@
-import { AST_NODE_TYPES, TSESTree } from "@typescript-eslint/utils";
+import {
+  AST_NODE_TYPES,
+  ESLintUtils,
+  TSESTree,
+} from "@typescript-eslint/utils";
+
+export const createRule = ESLintUtils.RuleCreator(
+  (name) =>
+    `https://github.com/raycast/eslint-plugin/blob/main/docs/rules/${name}.md`
+);
 
 export function isActionComponent(node: TSESTree.JSXTagNameExpression) {
   if (node.type === AST_NODE_TYPES.JSXIdentifier) {

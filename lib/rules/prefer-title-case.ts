@@ -1,11 +1,7 @@
-import { ESLintUtils, AST_NODE_TYPES } from "@typescript-eslint/utils";
+import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 import { titleCase } from "title-case";
 
-import { isActionComponent } from "../utils";
-
-const createRule = ESLintUtils.RuleCreator(
-  (name) => `https://example.com/rule/${name}/test`
-);
+import { isActionComponent, createRule } from "../utils";
 
 export default createRule({
   create: (context) => {

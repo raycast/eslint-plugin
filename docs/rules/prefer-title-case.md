@@ -45,7 +45,7 @@ Examples of **correct** code for this rule:
 ```
 
 ```tsx
-<Action title={`Submit form to ${service}`} />
+<Action title={`Submit Form to ${service}`} />
 ```
 
 Note that since ESLint is a statical analyses tool, it's not possible to cover every edge case possible, especially dynamic ones. For example, it's hard to check the title if you pass it from a prop:
