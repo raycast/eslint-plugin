@@ -1,51 +1,6 @@
 # Raycast ESLint Plugin
 
-This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
-
-> Note that this plugin is provided by default in Raycast's default configuration (`@raycast/eslint-config`). You shouldn't have to install the ESLint plugin unless you want to have more control over the default configuration.
-
-## Installation
-
-Install `@raycast/eslint-plugin` as part of your dev dependencies:
-
-```sh
-npm install @raycast/eslint-plugin --save-dev
-```
-
-## Usage
-
-Add `@raycast` to the `plugins` section of your `.eslintrc` configuration file.
-
-```json
-{
-  "plugins": [
-    "@raycast"
-  ]
-}
-```
-
-Then configure the rules you want to use under the `rules` section:
-
-```json
-{
-  "plugins": [
-    "@raycast"
-  ],
-  "rules": {
-    "@raycast/prefer-placeholders": "warn"
-  }
-}
-```
-
-Note that a configuration is exposed from the plugin to use the recommended rules by Raycast:
-
-```json
-{
-  "extends": [
-    "plugin:@raycast/recommended"
-  ]
-}
-```
+Raycast provides a plugin designed to help you follow best practices as you build extensions.
 
 ## Rules
 
@@ -63,5 +18,3 @@ You'll find below a summary of all the rules included in our ESLint plugin.
 | [prefer-title-case](docs/rules/prefer-title-case.md)     | Prefer Title Case                   | ✅  | 🔧 |
 
 <!-- end auto-generated rules list -->
-
-
