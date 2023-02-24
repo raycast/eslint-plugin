@@ -2,7 +2,7 @@
 
 This ESLint plugin is designed to help you follow best practices as you build Raycast extensions.
 
-> Note that this plugin is provided by default in `@raycast/eslint-config`. Follow the installation steps below only if you want to have more control over the default configuration.
+> Note that this plugin is provided by default in Raycast's default configuration (`@raycast/eslint-config`). You shouldn't have to install the ESLint plugin unless you want to have more control over the default configuration.
 
 ## Installation
 
