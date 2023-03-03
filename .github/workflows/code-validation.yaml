@@ -16,8 +16,7 @@ jobs:
       - name: Run TypeScript
         run: npm run type:check
       - name: Run ESLint
-        run: npx eslint .
-
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
