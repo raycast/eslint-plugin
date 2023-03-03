@@ -111,7 +111,7 @@ export default createRule({
                 if (expression.type === AST_NODE_TYPES.TemplateLiteral) {
                   const quasis = expression.quasis;
 
-                  let hasQuasiWithoutTitleCase = false;
+                  var hasQuasiWithoutTitleCase = false;
 
                   quasis.forEach((quasi) => {
                     if (
@@ -127,10 +127,12 @@ export default createRule({
                     }
                   });
 
-                  return context.report({
-                    node: expression,
-                    messageId: "isNotTitleCased",
-                  });
+                  if (hasQuasiWithoutTitleCase) {
+                    return context.report({
+                      node: expression,
+                      messageId: "isNotTitleCased",
+                    });
+                  }
                 }
               }
             }

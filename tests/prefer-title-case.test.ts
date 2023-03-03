@@ -27,7 +27,27 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: `
-        <Foobar title="Submit form" />
+        <Foobar title="submit form" />
+      `,
+    },
+    {
+      code: `
+        <ActionPanel.Submenu title={"Select Profile"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={\`Select Firefox Profile\`} />
+      `,
+    },
+    {
+      code: `
+        <Action title={\`Select Firefox Profile (\$\{profile\})\`} />
       `,
     },
   ],
@@ -66,6 +86,15 @@ ruleTester.run("prefer-title-case", rule, {
       errors: [{ messageId: "isNotTitleCased" }],
       output: `
         <Action title="Send My Message to Someone" />
+      `,
+    },
+    {
+      code: `
+        <Action title="manage language sets…" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Manage Language Sets…" />
       `,
     },
     {
