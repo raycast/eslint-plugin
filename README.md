@@ -2,6 +2,8 @@
 
 Raycast provides a plugin designed to help you follow best practices as you build extensions.
 
+Find more on [developers.raycast.com](https://developers.raycast.com/information/tools/eslint).
+
 ## Rules
 
 You'll find below a summary of all the rules included in our ESLint plugin.
