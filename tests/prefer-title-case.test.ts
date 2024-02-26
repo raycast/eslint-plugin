@@ -37,7 +37,7 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: `
-        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
     },
     {
@@ -59,6 +59,15 @@ ruleTester.run("prefer-title-case", rule, {
       errors: [{ messageId: "isNotTitleCased" }],
       output: `
         <Action title="Submit Form" />
+      `,
+    },
+    {
+      code: `
+        <Action title="Submit macos" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Submit macOS" />
       `,
     },
     {
@@ -90,6 +99,15 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: `
+        <Action title="Send My Message To Someone" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Send My Message to Someone" />
+      `,
+    },
+    {
+      code: `
         <Action title="manage language sets…" />
       `,
       errors: [{ messageId: "isNotTitleCased" }],
@@ -108,11 +126,11 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: `
-        <Action title={isAssignedToMe ? "Assign to me" : "Unassign From Me"} />
+        <Action title={isAssignedToMe ? "Assign to me" : "Unassign from Me"} />
       `,
       errors: [{ messageId: "isNotTitleCased" }],
       output: `
-        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
     },
     {
@@ -121,7 +139,7 @@ ruleTester.run("prefer-title-case", rule, {
       `,
       errors: [{ messageId: "isNotTitleCased" }],
       output: `
-        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
     },
     {
@@ -133,7 +151,7 @@ ruleTester.run("prefer-title-case", rule, {
         { messageId: "isNotTitleCased" },
       ],
       output: `
-        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+        <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
     },
     {
