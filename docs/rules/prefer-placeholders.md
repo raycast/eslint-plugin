@@ -11,7 +11,7 @@ This rule checks if you have added a placeholder in the `<Form.TextField>` and `
 Examples of **incorrect** code for this rule:
 
 ```tsx
- <Form.TextField title="Name" />
+<Form.TextField title="Name" />
 ```
 
 ```tsx
@@ -25,5 +25,8 @@ Examples of **correct** code for this rule:
 ```
 
 ```tsx
-<Form.TextArea placeholder="Write a brief description here..." title="Summary" />
+<Form.TextArea
+  placeholder="Write a brief description here..."
+  title="Summary"
+/>
 ```

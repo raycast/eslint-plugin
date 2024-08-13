@@ -37,6 +37,11 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: `
+        <Action title="Unassign from Me" />
+      `,
+    },
+    {
+      code: `
         <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
     },

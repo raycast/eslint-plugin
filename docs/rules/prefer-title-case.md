@@ -41,14 +41,14 @@ Examples of **correct** code for this rule:
 ```
 
 ```tsx
-<Action title={isAssignedToMe ? "Assign to Me" : "Unassign From Me"} />
+<Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
 ```
 
 ```tsx
 <Action title={`Submit Form to ${service}`} />
 ```
 
-Note that since ESLint is a statical analyses tool, it's not possible to cover every edge case possible, especially dynamic ones. For example, it's hard to check the title if you pass it from a prop:
+Note that since ESLint is a statistical analysis tool, it's not possible to cover every edge case possible, especially dynamic ones. For example, it's hard to check the title if you pass it from a prop:
 
 ```tsx
 <Action title={props.item.title} />
