@@ -149,7 +149,6 @@ export default createRule({
     },
     type: "suggestion",
     docs: {
-      recommended: "warn",
       description: "Prefer Title Case",
     },
     schema: [],
@@ -220,6 +219,10 @@ function titleCase(s: string): string {
     xkcd: true,
     macos: true,
     iphone: true,
+    github: true,
+    ide: true,
+    url: true,
+    vs: true,
   };
 
   const fixedCaseWordsMap: { [key: string]: string } = {
@@ -235,6 +238,10 @@ function titleCase(s: string): string {
     xkcd: "xkcd",
     macos: "macOS",
     iphone: "iPhone",
+    github: "GitHub",
+    ide: "IDE",
+    url: "URL",
+    vs: "VS",
   };
 
   // Replace all instances of '...' with '…'

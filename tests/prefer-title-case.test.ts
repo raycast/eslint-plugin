@@ -1,8 +1,9 @@
-import { ESLintUtils } from "@typescript-eslint/utils";
+// @ts-ignore
+import { RuleTester } from "eslint";
 import rule from "../lib/rules/prefer-title-case";
 
-const ruleTester = new ESLintUtils.RuleTester({
-  parser: "@typescript-eslint/parser",
+const ruleTester = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaFeatures: { jsx: true },
   },
