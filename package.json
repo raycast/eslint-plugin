@@ -1,6 +1,6 @@
 {
   "name": "@raycast/eslint-plugin",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "ESLint plugin designed to help Raycast's extensions authors follow best practices",
   "author": "Raycast Technologies Ltd.",
   "keywords": [
@@ -25,7 +25,8 @@
     "update:docs": "eslint-doc-generator",
     "lint": "npm-run-all \"lint:*\"",
     "lint:eslint-docs": "npm-run-all \"update:docs --check\"",
-    "lint:ts": "eslint ."
+    "lint:ts": "eslint .",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@typescript-eslint/utils": "^5.62.0"

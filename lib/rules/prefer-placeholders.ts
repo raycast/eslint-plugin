@@ -30,6 +30,7 @@ export default createRule({
     },
     type: "suggestion",
     docs: {
+      recommended: "warn",
       description: "Prefer Placeholders for Text Fields",
     },
     schema: [],
