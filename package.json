@@ -1,6 +1,6 @@
 {
   "name": "@raycast/eslint-plugin",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "ESLint plugin designed to help Raycast's extensions authors follow best practices",
   "author": "Raycast Technologies Ltd.",
   "keywords": [
@@ -28,11 +28,10 @@
     "lint:ts": "eslint ."
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.1.0"
+    "@typescript-eslint/utils": "^5.62.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.1.0",
-    "@typescript-eslint/rule-tester": "^8.1.0",
     "eslint": "^8.57.0",
     "eslint-doc-generator": "^1.7.1",
     "eslint-plugin-eslint-plugin": "^6.2.0",
