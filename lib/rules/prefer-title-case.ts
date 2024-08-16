@@ -224,6 +224,7 @@ function titleCase(s: string): string {
     ide: true,
     url: true,
     vs: true,
+    ai: true,
   };
 
   const fixedCaseWordsMap: { [key: string]: string } = {
@@ -243,6 +244,7 @@ function titleCase(s: string): string {
     ide: "IDE",
     url: "URL",
     vs: "VS",
+    ai: "AI",
   };
 
   // Replace all instances of '...' with '…'
