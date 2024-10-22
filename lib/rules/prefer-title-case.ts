@@ -174,7 +174,7 @@ export default createRule({
 // - The second word in a hyphenated compound (except for `Built-in` and `Plug-in`)
 //   - High-Level Events
 //   - 32-Bit Addressing
-function titleCase(s: string): string {
+export function titleCase(s: string): string {
   // Define the words that should not be capitalized unless they are the first or last word in the title or follow a colon.
   const noCaps: { [key: string]: boolean } = {
     and: true,
