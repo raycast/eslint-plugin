@@ -1,6 +1,6 @@
 {
   "name": "@raycast/eslint-plugin",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "ESLint plugin designed to help Raycast's extensions authors follow best practices",
   "author": "Raycast Technologies Ltd.",
   "keywords": [
@@ -13,6 +13,8 @@
   "main": "./dist/index.js",
   "files": [
     "dist",
+    "api.js",
+    "api.d.ts",
     "README.md"
   ],
   "scripts": {
