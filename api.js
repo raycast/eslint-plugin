@@ -1,1 +1,1 @@
-module.exports.titleCase = require("./dist/rules/prefer-title-case").titleCase;
+module.exports.titleCase = require("./dist/title-case").titleCase;
