@@ -48,27 +48,7 @@ export function titleCase(s: string): string {
     the: true,
   };
 
-  const fixedCaseWords: { [key: string]: boolean } = {
-    npm: true,
-    "crates.io": true,
-    dbt: true,
-    "pub.dev": true,
-    kubectx: true,
-    "monday.com": true,
-    "ray.so": true,
-    flomo: true,
-    iterm: true,
-    xkcd: true,
-    macos: true,
-    iphone: true,
-    github: true,
-    ide: true,
-    url: true,
-    vs: true,
-    ai: true,
-  };
-
-  const fixedCaseWordsMap: { [key: string]: string } = {
+  const fixedCaseWords: { [key: string]: string } = {
     npm: "npm",
     "crates.io": "crates.io",
     dbt: "dbt",
@@ -86,6 +66,7 @@ export function titleCase(s: string): string {
     url: "URL",
     vs: "VS",
     ai: "AI",
+    json: "JSON",
   };
 
   // Replace all instances of '...' with '…'
@@ -97,10 +78,10 @@ export function titleCase(s: string): string {
     const lowerWord = word.toLowerCase();
     const ok = noCaps[lowerWord];
     const isArticle = articles[lowerWord];
-    const isFixedCase = fixedCaseWords[lowerWord];
+    const fixedCase = fixedCaseWords[lowerWord];
 
-    if (isFixedCase) {
-      words[i] = fixedCaseWordsMap[lowerWord];
+    if (fixedCase) {
+      words[i] = fixedCase;
     } else if (
       (!ok && !isArticle) ||
       i === 0 ||
