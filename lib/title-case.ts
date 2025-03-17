@@ -104,6 +104,8 @@ export function titleCase(s: string): string {
 
     if (fixedCase) {
       words[i] = fixedCase;
+    } else if (word.startsWith("http://") || word.startsWith("https://")) {
+      words[i] = word;
     } else if (
       (!ok && !isArticle) ||
       i === 0 ||
