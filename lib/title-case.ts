@@ -67,14 +67,36 @@ export function titleCase(s: string): string {
     vs: "VS",
     ai: "AI",
     json: "JSON",
+    ios: "iOS",
+    id: "ID",
+    "plug-in": "Plug-in",
+    "built-in": "Built-in",
+    vscode: "VS Code",
+    css: "CSS",
+    html: "HTML",
   };
 
   // Replace all instances of '...' with '…'
   s = s.replace(/\.\.\./g, "…");
 
-  const words = s.split(" ");
+  const words = s.split(" ").map((x) => x.toString());
   for (let i = 0; i < words.length; i++) {
-    const word = words[i];
+    let word = words[i];
+    let leadingNonLetter = "";
+    let trailingNonLetter = "";
+
+    // Handle leading/trailing non-letter characters
+    const leadingMatch = word.match(/^[^a-zA-Z]+/);
+    if (leadingMatch) {
+      leadingNonLetter = leadingMatch[0];
+      word = word.slice(leadingNonLetter.length);
+    }
+    const trailingMatch = word.match(/[^a-zA-Z]+$/);
+    if (trailingMatch) {
+      trailingNonLetter = trailingMatch[0];
+      word = word.slice(0, word.length - trailingNonLetter.length);
+    }
+
     const lowerWord = word.toLowerCase();
     const ok = noCaps[lowerWord];
     const isArticle = articles[lowerWord];
@@ -85,13 +107,17 @@ export function titleCase(s: string): string {
     } else if (
       (!ok && !isArticle) ||
       i === 0 ||
-      i === words.length - 1 ||
       (isArticle && words[i - 1].endsWith(":"))
     ) {
-      words[i] = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      words[i] = word
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join("-");
     } else {
       words[i] = word.toLowerCase();
     }
+
+    words[i] = leadingNonLetter + words[i] + trailingNonLetter;
   }
 
   return words.join(" ");
