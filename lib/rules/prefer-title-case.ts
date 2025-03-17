@@ -150,7 +150,6 @@ export default createRule({
     },
     type: "suggestion",
     docs: {
-      recommended: "warn",
       description: "Prefer Title Case",
     },
     schema: [],

@@ -1,11 +1,12 @@
 // @ts-ignore
-import { RuleTester } from "eslint";
+import { RuleTester } from "@typescript-eslint/rule-tester";
 import rule from "../lib/rules/prefer-title-case";
 
 const ruleTester = new RuleTester({
-  parser: require.resolve("@typescript-eslint/parser"),
-  parserOptions: {
-    ecmaFeatures: { jsx: true },
+  languageOptions: {
+    parserOptions: {
+      ecmaFeatures: { jsx: true },
+    },
   },
 });
 
@@ -56,8 +57,31 @@ ruleTester.run("prefer-title-case", rule, {
         <Action title={\`Select Firefox Profile (\$\{profile\})\`} />
       `,
     },
+    {
+      code: `
+        <Action.OpenInBrowser url="https://www.cs.utah.edu/~mflatt/" title="https://www.cs.utah.edu/~mflatt/" />
+      `,
+    },
   ],
   invalid: [
+    {
+      code: `
+        <Action title="In Non-existent App" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="In Non-Existent App" />
+      `,
+    },
+    {
+      code: `
+        <Action title="Context (name, App) and Fallback Text" />
+      `,
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="Context (Name, App) and Fallback Text" />
+      `,
+    },
     {
       code: `
         <Action title="Submit form" />
