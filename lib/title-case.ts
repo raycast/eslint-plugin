@@ -75,7 +75,8 @@ export function titleCase(s: string): string {
     css: "CSS",
     html: "HTML",
     ip: "IP",
-    svg: "SVG"
+    svg: "SVG",
+    totp: "TOTP"
   };
 
   // Replace all instances of '...' with '…'
