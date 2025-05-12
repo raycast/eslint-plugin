@@ -54,6 +54,7 @@ export function titleCase(s: string): string {
     css: "CSS",
     "crates.io": "crates.io",
     dbt: "dbt",
+    dns: "DNS",
     flomo: "flomo",
     github: "GitHub",
     html: "HTML",
