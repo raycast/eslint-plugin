@@ -73,6 +73,7 @@ export function titleCase(s: string): string {
     "plug-in": "Plug-in",
     "pub.dev": "pub.dev",
     "ray.so": "ray.so",
+    "servicenow": "ServiceNow",
     svg: "SVG",
     totp: "TOTP",
     url: "URL",
