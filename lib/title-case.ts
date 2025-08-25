@@ -78,6 +78,7 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
     svg: "SVG",
     totp: "TOTP",
     url: "URL",
+    vlc: "VLC",
     vpn: "VPN",
     vs: "VS",
     vscode: "VS Code",
