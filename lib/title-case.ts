@@ -74,6 +74,7 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
     "pub.dev": "pub.dev",
     "ray.so": "ray.so",
     servicenow: "ServiceNow",
+    qr: "QR",
     svg: "SVG",
     totp: "TOTP",
     url: "URL",
