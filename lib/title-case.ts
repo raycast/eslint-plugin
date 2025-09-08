@@ -15,7 +15,7 @@
 // - The second word in a hyphenated compound (except for `Built-in` and `Plug-in`)
 //   - High-Level Events
 //   - 32-Bit Addressing
-export function titleCase(s: string): string {
+export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
   // Define the words that should not be capitalized unless they are the first or last word in the title or follow a colon.
   const noCaps: { [key: string]: boolean } = {
     and: true,
@@ -73,7 +73,7 @@ export function titleCase(s: string): string {
     "plug-in": "Plug-in",
     "pub.dev": "pub.dev",
     "ray.so": "ray.so",
-    "servicenow": "ServiceNow",
+    servicenow: "ServiceNow",
     svg: "SVG",
     totp: "TOTP",
     url: "URL",
@@ -81,6 +81,13 @@ export function titleCase(s: string): string {
     vs: "VS",
     vscode: "VS Code",
     xkcd: "xkcd",
+  };
+
+  // Merge user-provided extra fixed case words and built-in words
+  // Built-in words have higher priority
+  const allFixedCaseWords = {
+    ...Object.fromEntries((extraFixedCaseWords || []).map((word) => [word.toLowerCase(), word])),
+    ...fixedCaseWords,
   };
 
   // Replace all instances of '...' with '…'
@@ -107,17 +114,13 @@ export function titleCase(s: string): string {
     const lowerWord = word.toLowerCase();
     const ok = noCaps[lowerWord];
     const isArticle = articles[lowerWord];
-    const fixedCase = fixedCaseWords[lowerWord];
+    const fixedCase = allFixedCaseWords[lowerWord];
 
     if (fixedCase) {
       words[i] = fixedCase;
     } else if (word.startsWith("http://") || word.startsWith("https://")) {
       words[i] = word;
-    } else if (
-      (!ok && !isArticle) ||
-      i === 0 ||
-      (isArticle && words[i - 1].endsWith(":"))
-    ) {
+    } else if ((!ok && !isArticle) || i === 0 || (isArticle && words[i - 1].endsWith(":"))) {
       words[i] = word
         .split("-")
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())

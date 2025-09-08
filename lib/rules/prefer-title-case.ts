@@ -3,39 +3,36 @@ import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 import { isActionComponent, createRule } from "../utils";
 import { titleCase } from "../title-case";
 
-export default createRule({
-  create: (context) => {
+interface PreferTitleCaseOptions {
+  extraFixedCaseWords?: string[];
+}
+
+export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
+  create: (context, [options = {}]) => {
+    const extraFixedCaseWords = options.extraFixedCaseWords ?? [];
     return {
       JSXOpeningElement: (node) => {
         if (isActionComponent(node.name)) {
           const titleAttribute = node.attributes.find((attribute) => {
-            return (
-              attribute.type === "JSXAttribute" &&
-              attribute.name.name === "title"
-            );
+            return attribute.type === "JSXAttribute" && attribute.name.name === "title";
           });
 
           if (titleAttribute) {
-            const value =
-              titleAttribute.type === "JSXAttribute" && titleAttribute.value;
+            const value = titleAttribute.type === "JSXAttribute" && titleAttribute.value;
 
             // In the case of a simple string
             // <Action title="Submit form" />
             if (value) {
-              if (
-                value.type === AST_NODE_TYPES.Literal &&
-                typeof value.value === "string"
-              ) {
+              if (value.type === AST_NODE_TYPES.Literal && typeof value.value === "string") {
                 const originalTitle = value.value;
 
-                const formattedTitle = titleCase(originalTitle);
+                const formattedTitle = titleCase(originalTitle, extraFixedCaseWords);
 
                 if (originalTitle !== formattedTitle) {
                   context.report({
                     node: value,
                     messageId: "isNotTitleCased",
-                    fix: (fixer) =>
-                      fixer.replaceText(value, `"${formattedTitle}"`),
+                    fix: (fixer) => fixer.replaceText(value, `"${formattedTitle}"`),
                   });
                 }
               }
@@ -51,14 +48,13 @@ export default createRule({
                   expression.value &&
                   typeof expression.value === "string"
                 ) {
-                  const formattedTitle = titleCase(expression.value);
+                  const formattedTitle = titleCase(expression.value, extraFixedCaseWords);
 
                   if (expression.value !== formattedTitle) {
                     context.report({
                       node: expression,
                       messageId: "isNotTitleCased",
-                      fix: (fixer) =>
-                        fixer.replaceText(expression, `"${formattedTitle}"`),
+                      fix: (fixer) => fixer.replaceText(expression, `"${formattedTitle}"`),
                     });
                   }
                 }
@@ -74,14 +70,13 @@ export default createRule({
                     consequent.value &&
                     typeof consequent.value === "string"
                   ) {
-                    const formattedTitle = titleCase(consequent.value);
+                    const formattedTitle = titleCase(consequent.value, extraFixedCaseWords);
 
                     if (consequent.value !== formattedTitle) {
                       context.report({
                         node: consequent,
                         messageId: "isNotTitleCased",
-                        fix: (fixer) =>
-                          fixer.replaceText(consequent, `"${formattedTitle}"`),
+                        fix: (fixer) => fixer.replaceText(consequent, `"${formattedTitle}"`),
                       });
                     }
                   }
@@ -91,14 +86,13 @@ export default createRule({
                     alternate.value &&
                     typeof alternate.value === "string"
                   ) {
-                    const formattedTitle = titleCase(alternate.value);
+                    const formattedTitle = titleCase(alternate.value, extraFixedCaseWords);
 
                     if (alternate.value !== formattedTitle) {
                       context.report({
                         node: alternate,
                         messageId: "isNotTitleCased",
-                        fix: (fixer) =>
-                          fixer.replaceText(alternate, `"${formattedTitle}"`),
+                        fix: (fixer) => fixer.replaceText(alternate, `"${formattedTitle}"`),
                       });
                     }
                   }
@@ -119,7 +113,7 @@ export default createRule({
                       quasi.value &&
                       typeof quasi.value.raw === "string"
                     ) {
-                      const formattedTitle = titleCase(quasi.value.raw);
+                      const formattedTitle = titleCase(quasi.value.raw, extraFixedCaseWords);
 
                       if (quasi.value.raw !== formattedTitle) {
                         hasQuasiWithoutTitleCase = true;
@@ -152,7 +146,21 @@ export default createRule({
     docs: {
       description: "Prefer Title Case",
     },
-    schema: [],
+    schema: [
+      {
+        type: "object",
+        properties: {
+          extraFixedCaseWords: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+            uniqueItems: true,
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
-  defaultOptions: [],
+  defaultOptions: [{}],
 });
