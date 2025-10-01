@@ -71,6 +71,7 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
     "monday.com": "monday.com",
     npm: "npm",
     "plug-in": "Plug-in",
+    pr: "PR",
     "pub.dev": "pub.dev",
     "ray.so": "ray.so",
     servicenow: "ServiceNow",
