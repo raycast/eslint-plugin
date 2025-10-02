@@ -62,6 +62,37 @@ ruleTester.run("prefer-title-case", rule, {
         <Action.OpenInBrowser url="https://www.cs.utah.edu/~mflatt/" title="https://www.cs.utah.edu/~mflatt/" />
       `,
     },
+    {
+      code: `
+        <Action title="MyApp DevTool" />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+    },
+    {
+      code: `
+        <Action title={"MyApp DevTool"} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+    },
+    {
+      code: `
+        <Action title={isEnabled ? "MyApp DevTool" : "MyApp Tool"} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+    },
+    {
+      code: `
+        <Action title={\`MyApp DevTool\`} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+    },
+    // Built-in words have higher priority than user-provided words
+    {
+      code: `
+        <Action title="GitHub DevTool" />
+      `,
+      options: [{ extraFixedCaseWords: ["github", "DevTool"] }],
+    },
   ],
   invalid: [
     {
@@ -176,10 +207,7 @@ ruleTester.run("prefer-title-case", rule, {
       code: `
         <Action title={isAssignedToMe ? "Assign to me" : "Unassign from me"} />
       `,
-      errors: [
-        { messageId: "isNotTitleCased" },
-        { messageId: "isNotTitleCased" },
-      ],
+      errors: [{ messageId: "isNotTitleCased" }, { messageId: "isNotTitleCased" }],
       output: `
         <Action title={isAssignedToMe ? "Assign to Me" : "Unassign from Me"} />
       `,
@@ -194,6 +222,43 @@ ruleTester.run("prefer-title-case", rule, {
     },
     {
       code: "<Action title={`Submit form to ${service} and also to ${service2}`} />",
+      errors: [{ messageId: "isNotTitleCased" }],
+    },
+    {
+      code: `
+        <Action title="MyApp DevTool" />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp"] }],
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title="MyApp Devtool" />
+      `,
+    },
+    {
+      code: `
+        <Action title={"myapp devtool"} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+      errors: [{ messageId: "isNotTitleCased" }],
+      output: `
+        <Action title={"MyApp DevTool"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={isEnabled ? "myapp devtool" : "myapp tool"} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
+      errors: [{ messageId: "isNotTitleCased" }, { messageId: "isNotTitleCased" }],
+      output: `
+        <Action title={isEnabled ? "MyApp DevTool" : "MyApp Tool"} />
+      `,
+    },
+    {
+      code: `
+        <Action title={\`myapp devtool\`} />
+      `,
+      options: [{ extraFixedCaseWords: ["MyApp", "DevTool"] }],
       errors: [{ messageId: "isNotTitleCased" }],
     },
   ],
