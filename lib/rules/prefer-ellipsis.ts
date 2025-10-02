@@ -1,15 +1,9 @@
 import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 
 import { isActionComponent, createRule } from "../utils";
-import { titleCase } from "../title-case";
 
-interface PreferTitleCaseOptions {
-  extraFixedCaseWords?: string[];
-}
-
-export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
-  create: (context, [options = {}]) => {
-    const extraFixedCaseWords = options.extraFixedCaseWords ?? [];
+export default createRule({
+  create: (context) => {
     return {
       JSXOpeningElement: (node) => {
         if (isActionComponent(node.name)) {
@@ -32,16 +26,12 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                 typeof value.value === "string"
               ) {
                 const originalTitle = value.value;
-
-                const formattedTitle = titleCase(
-                  originalTitle,
-                  extraFixedCaseWords
-                );
+                const formattedTitle = originalTitle.replace(/\.\.\./g, "…");
 
                 if (originalTitle !== formattedTitle) {
                   context.report({
                     node: value,
-                    messageId: "isNotTitleCased",
+                    messageId: "isNotEllipsisCharacter",
                     fix: (fixer) =>
                       fixer.replaceText(value, `"${formattedTitle}"`),
                   });
@@ -59,15 +49,15 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                   expression.value &&
                   typeof expression.value === "string"
                 ) {
-                  const formattedTitle = titleCase(
-                    expression.value,
-                    extraFixedCaseWords
+                  const formattedTitle = expression.value.replace(
+                    /\.\.\./g,
+                    "…"
                   );
 
                   if (expression.value !== formattedTitle) {
                     context.report({
                       node: expression,
-                      messageId: "isNotTitleCased",
+                      messageId: "isNotEllipsisCharacter",
                       fix: (fixer) =>
                         fixer.replaceText(expression, `"${formattedTitle}"`),
                     });
@@ -85,15 +75,15 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                     consequent.value &&
                     typeof consequent.value === "string"
                   ) {
-                    const formattedTitle = titleCase(
-                      consequent.value,
-                      extraFixedCaseWords
+                    const formattedTitle = consequent.value.replace(
+                      /\.\.\./g,
+                      "…"
                     );
 
                     if (consequent.value !== formattedTitle) {
                       context.report({
                         node: consequent,
-                        messageId: "isNotTitleCased",
+                        messageId: "isNotEllipsisCharacter",
                         fix: (fixer) =>
                           fixer.replaceText(consequent, `"${formattedTitle}"`),
                       });
@@ -105,15 +95,15 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                     alternate.value &&
                     typeof alternate.value === "string"
                   ) {
-                    const formattedTitle = titleCase(
-                      alternate.value,
-                      extraFixedCaseWords
+                    const formattedTitle = alternate.value.replace(
+                      /\.\.\./g,
+                      "…"
                     );
 
                     if (alternate.value !== formattedTitle) {
                       context.report({
                         node: alternate,
-                        messageId: "isNotTitleCased",
+                        messageId: "isNotEllipsisCharacter",
                         fix: (fixer) =>
                           fixer.replaceText(alternate, `"${formattedTitle}"`),
                       });
@@ -136,9 +126,9 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                       quasi.value &&
                       typeof quasi.value.raw === "string"
                     ) {
-                      const formattedTitle = titleCase(
-                        quasi.value.raw,
-                        extraFixedCaseWords
+                      const formattedTitle = quasi.value.raw.replace(
+                        /\.\.\./g,
+                        "…"
                       );
 
                       if (quasi.value.raw !== formattedTitle) {
@@ -150,7 +140,7 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
                   if (hasQuasiWithoutTitleCase) {
                     return context.report({
                       node: expression,
-                      messageId: "isNotTitleCased",
+                      messageId: "isNotEllipsisCharacter",
                     });
                   }
                 }
@@ -161,34 +151,17 @@ export default createRule<[PreferTitleCaseOptions], "isNotTitleCased">({
       },
     };
   },
-  name: "prefer-title-case",
+  name: "prefer-ellipsis",
   meta: {
     fixable: "code",
     messages: {
-      isNotTitleCased:
-        "Prefer Title Case naming convention for action titles (e.g Copy to Clipboard).",
+      isNotEllipsisCharacter: "Prefer `…` to `...`",
     },
     type: "suggestion",
     docs: {
-      description: "Prefer Title Case",
+      description: "Prefer Ellipsis Character",
     },
-    schema: [
-      {
-        type: "object",
-        properties: {
-          extraFixedCaseWords: {
-            type: "array",
-            items: {
-              type: "string",
-            },
-            uniqueItems: true,
-            description:
-              "List of additional words to keep in fixed case (e.g. `macOS`, `iPhone`).",
-          },
-        },
-        additionalProperties: false,
-      },
-    ],
+    schema: [],
   },
   defaultOptions: [{}],
 });
