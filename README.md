@@ -14,6 +14,7 @@ You'll find below a summary of all the rules included in our ESLint plugin.
 
 | Name                                                     | Description                         | 🔧 |
 | :------------------------------------------------------- | :---------------------------------- | :- |
+| [prefer-ellipsis](docs/rules/prefer-ellipsis.md)         | Prefer Ellipsis Character           | 🔧 |
 | [prefer-placeholders](docs/rules/prefer-placeholders.md) | Prefer Placeholders for Text Fields |    |
 | [prefer-title-case](docs/rules/prefer-title-case.md)     | Prefer Title Case                   | 🔧 |
 

@@ -51,3 +51,13 @@ Note that since ESLint is a statistical analysis tool, it's not possible to cove
 ```tsx
 <Action title={props.item.title} />
 ```
+
+## Options
+
+<!-- begin auto-generated rule options list -->
+
+| Name                  | Description                                                              | Type     |
+| :-------------------- | :----------------------------------------------------------------------- | :------- |
+| `extraFixedCaseWords` | List of additional words to keep in fixed case (e.g. `macOS`, `iPhone`). | String[] |
+
+<!-- end auto-generated rule options list -->

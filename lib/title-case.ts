@@ -71,12 +71,16 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
     "monday.com": "monday.com",
     npm: "npm",
     "plug-in": "Plug-in",
+    pr: "PR",
     "pub.dev": "pub.dev",
     "ray.so": "ray.so",
     servicenow: "ServiceNow",
+    qr: "QR",
+    ssh: "SSH",
     svg: "SVG",
     totp: "TOTP",
     url: "URL",
+    vlc: "VLC",
     vpn: "VPN",
     vs: "VS",
     vscode: "VS Code",
@@ -86,12 +90,11 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
   // Merge user-provided extra fixed case words and built-in words
   // Built-in words have higher priority
   const allFixedCaseWords = {
-    ...Object.fromEntries((extraFixedCaseWords || []).map((word) => [word.toLowerCase(), word])),
+    ...Object.fromEntries(
+      (extraFixedCaseWords || []).map((word) => [word.toLowerCase(), word])
+    ),
     ...fixedCaseWords,
   };
-
-  // Replace all instances of '...' with '…'
-  s = s.replace(/\.\.\./g, "…");
 
   const words = s.split(" ").map((x) => x.toString());
   for (let i = 0; i < words.length; i++) {
@@ -120,10 +123,14 @@ export function titleCase(s: string, extraFixedCaseWords?: string[]): string {
       words[i] = fixedCase;
     } else if (word.startsWith("http://") || word.startsWith("https://")) {
       words[i] = word;
-    } else if ((!ok && !isArticle) || i === 0 || (isArticle && words[i - 1].endsWith(":"))) {
+    } else if (
+      (!ok && !isArticle) ||
+      i === 0 ||
+      (isArticle && words[i - 1].endsWith(":"))
+    ) {
       words[i] = word
         .split("-")
-        .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join("-");
     } else {
       words[i] = word.toLowerCase();
