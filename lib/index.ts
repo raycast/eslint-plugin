@@ -29,7 +29,7 @@ Object.assign(plugin.configs, {
         "@raycast": plugin,
       },
       rules: {
-        "@raycast/prefer-ellips": "warn",
+        "@raycast/prefer-ellipsis": "warn",
         "@raycast/prefer-title-case": "warn",
       },
     },
