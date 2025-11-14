@@ -110,9 +110,7 @@ export default createRule({
   },
   defaultOptions: [],
   create(context) {
-    const hasMultiPlatform = hasMultiPlatformConfig(
-      (context as TSESLint.RuleContext<any, any>).filename
-    );
+    const hasMultiPlatform = hasMultiPlatformConfig(context.filename);
 
     if (!hasMultiPlatform) {
       return {};

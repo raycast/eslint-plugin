@@ -1,4 +1,4 @@
-# No Ambiguous Platform Shortcut (`@raycast/no-ambiguous-platform-shortcut`)
+# Warn when a shortcut is ambiguous in cross-platform extensions (`@raycast/no-ambiguous-platform-shortcut`)
 
 <!-- end auto-generated rule header -->
 

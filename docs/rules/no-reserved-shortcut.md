@@ -1,4 +1,4 @@
-# No Reserved Shortcut (`@raycast/no-reserved-shortcut`)
+# Warn when a shortcut prop defines a reserved shortcut that Raycast uses (`@raycast/no-reserved-shortcut`)
 
 <!-- end auto-generated rule header -->
 

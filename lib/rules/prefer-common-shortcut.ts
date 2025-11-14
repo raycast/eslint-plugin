@@ -305,7 +305,7 @@ export default createRule({
               // Replace object literal
               fixes.push(
                 fixer.replaceText(
-                  node.value as any,
+                  node.value as TSESTree.Node,
                   `{Keyboard.Shortcut.Common.${match.name}}`
                 )
               );
