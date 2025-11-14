@@ -268,7 +268,7 @@ export default createRule({
     type: "suggestion",
     docs: {
       description:
-        "Warn when a literal shortcut matches a common one; prefer Keyboard.Shortcut.Common.* from @raycast/api.",
+        "Warn when a shortcut matches a common one; prefer Keyboard.Shortcut.Common.* from @raycast/api.",
     },
     fixable: "code",
     schema: [],

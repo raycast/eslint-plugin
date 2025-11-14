@@ -87,12 +87,12 @@ export default createRule({
     type: "suggestion",
     docs: {
       description:
-        "Warn when a shortcut prop defines a literal reserved shortcut that Raycast uses internally.",
+        "Warn when a shortcut prop defines a reserved shortcut that Raycast uses.",
     },
     schema: [],
     messages: {
       reserved:
-        "Shortcut literal matches reserved shortcut '{{name}}'. Choose a different shortcut to avoid conflicts.",
+        "Shortcut matches reserved shortcut '{{name}}' and will be ignored by Raycast.",
     },
   },
   defaultOptions: [],
