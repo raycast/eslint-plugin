@@ -49,4 +49,4 @@ import { Keyboard } from "@raycast/api";
 <Action shortcut={Keyboard.Shortcut.Common.MoveUp} />
 ```
 
-Note that the rule only flags "single" (non-platform) object literals when the common shortcut is exactly the same on macOS and Windows. For platform-specific differences, use the `platform` object form in your code or the corresponding `Keyboard.Shortcut.Common.*` reference.
+Note that for "single" (non-platform) object literals, the rule flags shortcuts that match either platform's definition of a common shortcut. For platform-specific differences, use the platform object form in your code or the corresponding `Keyboard.Shortcut.Common.*` reference.

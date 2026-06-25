@@ -81,5 +81,42 @@ const C = () => (
 const C = () => <Action shortcut={Keyboard.Shortcut.Common.Refresh} />;
       `,
     },
+    // Adds a runtime import when existing import is type-only
+    {
+      code: `
+        import type { Icon } from "@raycast/api";
+        const C = () => <Action shortcut={{ modifiers: ["cmd"], key: "s" }} />;
+      `,
+      errors: [{ messageId: "useCommon" }],
+      output: `
+        import { Keyboard } from "@raycast/api";
+import type { Icon } from "@raycast/api";
+        const C = () => <Action shortcut={Keyboard.Shortcut.Common.Save} />;
+      `,
+    },
+    // Uses existing namespace imports
+    {
+      code: `
+        import * as Raycast from "@raycast/api";
+        const C = () => <Action shortcut={{ modifiers: ["cmd"], key: "e" }} />;
+      `,
+      errors: [{ messageId: "useCommon" }],
+      output: `
+        import * as Raycast from "@raycast/api";
+        const C = () => <Action shortcut={Raycast.Keyboard.Shortcut.Common.Edit} />;
+      `,
+    },
+    // Uses existing aliased Keyboard imports
+    {
+      code: `
+        import { Keyboard as RaycastKeyboard } from "@raycast/api";
+        const C = () => <Action shortcut={{ modifiers: ["cmd"], key: "o" }} />;
+      `,
+      errors: [{ messageId: "useCommon" }],
+      output: `
+        import { Keyboard as RaycastKeyboard } from "@raycast/api";
+        const C = () => <Action shortcut={RaycastKeyboard.Shortcut.Common.Open} />;
+      `,
+    },
   ],
 });

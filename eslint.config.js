@@ -4,6 +4,9 @@ const globals = require("globals");
 const plugin = require("eslint-plugin-eslint-plugin");
 
 module.exports = defineConfig([
+  {
+    ignores: ["dist/**"],
+  },
   js.configs.recommended,
   {
     languageOptions: {

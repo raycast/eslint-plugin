@@ -26,7 +26,7 @@
     "preupdate:docs": "npm run build",
     "update:docs": "eslint-doc-generator",
     "lint": "npm-run-all \"lint:*\"",
-    "lint:eslint-docs": "npm-run-all \"update:docs --check\"",
+    "lint:eslint-docs": "npm-run-all \"update:docs -- --check\"",
     "lint:ts": "eslint .",
     "prepublish": "npm run build"
   },

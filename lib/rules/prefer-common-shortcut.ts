@@ -214,52 +214,89 @@ function findMatchingCommon(
   return null;
 }
 
-function ensureKeyboardImportFix(
+function getKeyboardShortcutReference(
   fixer: TSESLint.RuleFixer,
   program: TSESTree.Program
-) {
-  // Find an import from "@raycast/api"
+): { reference: string; importFix: RuleFix | null } {
   const imports = program.body.filter(
     (n): n is TSESTree.ImportDeclaration =>
       n.type === AST_NODE_TYPES.ImportDeclaration
   );
-  const apiImport = imports.find((i) => i.source.value === "@raycast/api");
+  const apiImports = imports.filter((i) => i.source.value === "@raycast/api");
+
+  for (const apiImport of apiImports) {
+    if (apiImport.importKind === "type") continue;
+
+    const keyboardSpecifier = apiImport.specifiers.find(
+      (specifier): specifier is TSESTree.ImportSpecifier =>
+        specifier.type === AST_NODE_TYPES.ImportSpecifier &&
+        specifier.importKind !== "type" &&
+        specifier.imported.type === AST_NODE_TYPES.Identifier &&
+        specifier.imported.name === "Keyboard"
+    );
+    if (keyboardSpecifier) {
+      return {
+        reference: `${keyboardSpecifier.local.name}.Shortcut.Common`,
+        importFix: null,
+      };
+    }
+
+    const namespaceSpecifier = apiImport.specifiers.find(
+      (specifier): specifier is TSESTree.ImportNamespaceSpecifier =>
+        specifier.type === AST_NODE_TYPES.ImportNamespaceSpecifier
+    );
+    if (namespaceSpecifier) {
+      return {
+        reference: `${namespaceSpecifier.local.name}.Keyboard.Shortcut.Common`,
+        importFix: null,
+      };
+    }
+  }
+
+  const apiImport = apiImports.find(
+    (apiImport) => apiImport.importKind !== "type"
+  );
 
   if (!apiImport) {
-    // Insert a new import at top
-    return fixer.insertTextBefore(
-      (program.body[0] as TSESTree.Node) ?? program,
-      `import { Keyboard } from "@raycast/api";\n`
-    );
+    return {
+      reference: "Keyboard.Shortcut.Common",
+      importFix: fixer.insertTextBefore(
+        (apiImports[0] as TSESTree.Node | undefined) ??
+          (program.body[0] as TSESTree.Node) ??
+          program,
+        `import { Keyboard } from "@raycast/api";\n`
+      ),
+    };
   }
 
-  // If already has Keyboard named import, do nothing
-  const hasKeyboard = apiImport.specifiers.some(
-    (s) =>
-      s.type === AST_NODE_TYPES.ImportSpecifier &&
-      s.imported.type === AST_NODE_TYPES.Identifier &&
-      s.imported.name === "Keyboard"
+  const namedImportSpecifiers = apiImport.specifiers.filter(
+    (specifier): specifier is TSESTree.ImportSpecifier =>
+      specifier.type === AST_NODE_TYPES.ImportSpecifier
   );
-  if (hasKeyboard) return null;
-
-  // If it's a named import, add Keyboard
-  const lastSpecifier = apiImport.specifiers[apiImport.specifiers.length - 1];
-  if (lastSpecifier && lastSpecifier.type === AST_NODE_TYPES.ImportSpecifier) {
-    return fixer.insertTextAfter(lastSpecifier, `, Keyboard`);
+  const lastNamedImportSpecifier =
+    namedImportSpecifiers[namedImportSpecifiers.length - 1];
+  if (lastNamedImportSpecifier) {
+    return {
+      reference: "Keyboard.Shortcut.Common",
+      importFix: fixer.insertTextAfter(lastNamedImportSpecifier, `, Keyboard`),
+    };
   }
 
-  // If it's a default or namespace import, add a named import group
-  // Transform: import api from "@raycast/api"; -> import api, { Keyboard } from "@raycast/api";
-  // Insert after the default/namespace specifier if present
   const spec = apiImport.specifiers[0];
-  if (spec) {
-    return fixer.insertTextAfter(spec, `, { Keyboard }`);
+  if (spec && spec.type === AST_NODE_TYPES.ImportDefaultSpecifier) {
+    return {
+      reference: "Keyboard.Shortcut.Common",
+      importFix: fixer.insertTextAfter(spec, `, { Keyboard }`),
+    };
   }
-  // No specifiers (e.g., `import "@raycast/api";`), add a new import above
-  return fixer.insertTextBefore(
-    apiImport,
-    `import { Keyboard } from "@raycast/api";\n`
-  );
+
+  return {
+    reference: "Keyboard.Shortcut.Common",
+    importFix: fixer.insertTextBefore(
+      apiImport,
+      `import { Keyboard } from "@raycast/api";\n`
+    ),
+  };
 }
 
 export default createRule({
@@ -302,16 +339,19 @@ export default createRule({
             data: { name: match.name },
             fix: (fixer) => {
               const fixes = [] as RuleFix[];
+              const program = context.sourceCode.ast;
+              const { reference, importFix } = getKeyboardShortcutReference(
+                fixer,
+                program
+              );
               // Replace object literal
               fixes.push(
                 fixer.replaceText(
                   node.value as TSESTree.Node,
-                  `{Keyboard.Shortcut.Common.${match.name}}`
+                  `{${reference}.${match.name}}`
                 )
               );
               // Ensure import
-              const program = context.sourceCode.ast;
-              const importFix = ensureKeyboardImportFix(fixer, program);
               if (importFix) fixes.push(importFix);
               return fixes;
             },
