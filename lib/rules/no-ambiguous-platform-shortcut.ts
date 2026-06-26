@@ -7,6 +7,58 @@ import { createRule } from "../utils";
 
 type SimpleShortcut = { modifiers: string[]; key: string };
 
+type PackagePlatformsCacheEntry = {
+  hasMultiPlatform: boolean;
+  mtimeMs: number;
+  size: number;
+};
+
+const packagePlatformsCache = new Map<string, PackagePlatformsCacheEntry>();
+
+function readPackagePlatformsConfig(pkgPath: string): boolean | undefined {
+  let stats: ReturnType<typeof fs.statSync>;
+
+  try {
+    stats = fs.statSync(pkgPath);
+  } catch {
+    packagePlatformsCache.delete(pkgPath);
+    return undefined;
+  }
+
+  if (!stats.isFile()) {
+    packagePlatformsCache.delete(pkgPath);
+    return undefined;
+  }
+
+  const cached = packagePlatformsCache.get(pkgPath);
+  if (
+    cached &&
+    cached.mtimeMs === stats.mtimeMs &&
+    cached.size === stats.size
+  ) {
+    return cached.hasMultiPlatform;
+  }
+
+  try {
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+    const platforms = pkg?.platforms;
+    const hasMultiPlatform = Array.isArray(platforms) && platforms.length > 1;
+    packagePlatformsCache.set(pkgPath, {
+      hasMultiPlatform,
+      mtimeMs: stats.mtimeMs,
+      size: stats.size,
+    });
+    return hasMultiPlatform;
+  } catch {
+    packagePlatformsCache.set(pkgPath, {
+      hasMultiPlatform: false,
+      mtimeMs: stats.mtimeMs,
+      size: stats.size,
+    });
+    return false;
+  }
+}
+
 function hasMultiPlatformConfig(filename: string | undefined): boolean {
   if (!filename || filename.startsWith("<")) {
     return false;
@@ -15,15 +67,10 @@ function hasMultiPlatformConfig(filename: string | undefined): boolean {
   let dir = path.dirname(filename);
   while (true) {
     const pkgPath = path.join(dir, "package.json");
+    const hasMultiPlatform = readPackagePlatformsConfig(pkgPath);
 
-    if (fs.existsSync(pkgPath)) {
-      try {
-        const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
-        const platforms = pkg?.platforms;
-        return Array.isArray(platforms) && platforms.length > 1;
-      } catch {
-        return false;
-      }
+    if (hasMultiPlatform !== undefined) {
+      return hasMultiPlatform;
     }
 
     const parent = path.dirname(dir);
