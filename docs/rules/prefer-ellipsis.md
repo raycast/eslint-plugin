@@ -1,4 +1,8 @@
-# Prefer Ellipsis Character (`@raycast/prefer-ellipsis`)
+# @raycast/prefer-ellipsis
+
+📝 Prefer Ellipsis Character.
+
+⚠️ This rule _warns_ in the ✅ `recommended` config.
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 

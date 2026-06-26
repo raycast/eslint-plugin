@@ -1,0 +1,7 @@
+{
+  "name": "multi-platform-extension",
+  "platforms": [
+    "macOS",
+    "windows"
+  ]
+}

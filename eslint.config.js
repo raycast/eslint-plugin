@@ -1,9 +1,12 @@
 const { defineConfig } = require("eslint/config");
 const js = require("@eslint/js");
 const globals = require("globals");
-const plugin = require("eslint-plugin-eslint-plugin");
+const plugin = require("eslint-plugin-eslint-plugin").default;
 
 module.exports = defineConfig([
+  {
+    ignores: ["dist/**"],
+  },
   js.configs.recommended,
   {
     languageOptions: {
@@ -13,5 +16,5 @@ module.exports = defineConfig([
       },
     },
   },
-  plugin.configs["flat/recommended"],
+  plugin.configs.recommended,
 ]);
