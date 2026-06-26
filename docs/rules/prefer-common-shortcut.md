@@ -1,4 +1,8 @@
-# Warn when a shortcut matches a common one; prefer Keyboard.Shortcut.Common.* from @raycast/api (`@raycast/prefer-common-shortcut`)
+# @raycast/prefer-common-shortcut
+
+📝 Warn when a shortcut matches a common one; prefer Keyboard.Shortcut.Common.* from @raycast/api.
+
+⚠️ This rule _warns_ in the ✅ `recommended` config.
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 

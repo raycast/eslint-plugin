@@ -1,4 +1,8 @@
-# Warn when a shortcut prop defines a reserved shortcut that Raycast uses (`@raycast/no-reserved-shortcut`)
+# @raycast/no-reserved-shortcut
+
+📝 Warn when a shortcut prop defines a reserved shortcut that Raycast uses.
+
+⚠️ This rule _warns_ in the ✅ `recommended` config.
 
 <!-- end auto-generated rule header -->
 

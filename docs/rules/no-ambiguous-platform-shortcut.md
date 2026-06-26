@@ -1,4 +1,8 @@
-# Warn when a shortcut is ambiguous in cross-platform extensions (`@raycast/no-ambiguous-platform-shortcut`)
+# @raycast/no-ambiguous-platform-shortcut
+
+📝 Warn when a shortcut is ambiguous in cross-platform extensions.
+
+⚠️ This rule _warns_ in the ✅ `recommended` config.
 
 <!-- end auto-generated rule header -->
 

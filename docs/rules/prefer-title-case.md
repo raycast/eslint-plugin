@@ -1,4 +1,8 @@
-# Prefer Title Case (`@raycast/prefer-title-case`)
+# @raycast/prefer-title-case
+
+📝 Prefer Title Case.
+
+⚠️ This rule _warns_ in the ✅ `recommended` config.
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
