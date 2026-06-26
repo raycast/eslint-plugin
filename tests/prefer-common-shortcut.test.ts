@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error: RuleTester types are incompatible with this test setup.
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import rule from "../lib/rules/prefer-common-shortcut";
 

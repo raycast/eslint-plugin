@@ -1,13 +1,11 @@
 import fs from "fs";
 import path from "path";
 
-import { AST_NODE_TYPES, TSESLint, TSESTree } from "@typescript-eslint/utils";
+import { AST_NODE_TYPES, TSESTree } from "@typescript-eslint/utils";
 
 import { createRule } from "../utils";
 
 type SimpleShortcut = { modifiers: string[]; key: string };
-
-const packagePlatformsCache = new Map<string, boolean>();
 
 function hasMultiPlatformConfig(filename: string | undefined): boolean {
   if (!filename || filename.startsWith("<")) {
@@ -17,19 +15,13 @@ function hasMultiPlatformConfig(filename: string | undefined): boolean {
   let dir = path.dirname(filename);
   while (true) {
     const pkgPath = path.join(dir, "package.json");
-    if (packagePlatformsCache.has(pkgPath)) {
-      return packagePlatformsCache.get(pkgPath)!;
-    }
 
     if (fs.existsSync(pkgPath)) {
       try {
         const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
         const platforms = pkg?.platforms;
-        const multi = Array.isArray(platforms) && platforms.length > 1;
-        packagePlatformsCache.set(pkgPath, multi);
-        return multi;
+        return Array.isArray(platforms) && platforms.length > 1;
       } catch {
-        packagePlatformsCache.set(pkgPath, false);
         return false;
       }
     }
